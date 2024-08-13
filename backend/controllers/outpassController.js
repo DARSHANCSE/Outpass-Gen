@@ -59,6 +59,54 @@ const getOutpass = async(req,res)=>{
     }
 }
 
+const gethodrequest=async (req,res)=>{
+    const hdid= req.headers.id
+    try{
+        const req= await prisma.HODRequests.findUnique(
+            {
+                where:{
+                    hodid:hdid
+                }
+            ,select:{
+                outpassid:true
+            }}
+        )
+        let allreqs=[];
+        for (const x of req){
+            const studentreq = await prisma.Outpass.findUnique({
+                where:{
+                    id:x.outpassid
+                },
+                select:{
+                    rollNo:true,
+                    student:{
+                        select:{
+                        name:true,
+                        class:true,
+                        year:true,
+                        department:true
+                        }}
+                },
+                startDate:true,
+                endDate:true,
+                outTime:true,
+                inTime:true,
+                reason:true,
+                hostelBlock:true
+
+
+            })
+            
+        allreqs.push(studentreq)
+        }
+        
+        res.json({success:true,message:allreqs})
+    }
+    catch(err){
+        res.json({success:true,message:"error"})
+    }
+}
+
 const getStaffRequests = async(req,res)=>{
     const staffId = req.headers.id;
     try{
@@ -129,4 +177,4 @@ const editOd = async(req,res) =>{
 
 
 
-export {getOutpass,getStaffRequests}
+export {gethodrequest,getOutpass,getStaffRequests}
