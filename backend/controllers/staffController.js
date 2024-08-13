@@ -183,5 +183,4 @@ const staffForgetPassword = async(req,res)=>{
 
 
 
-export {staffRegister,HODRegister,HODLogin,staffLogin}
 export {staffRegister,HODRegister,staffLogin,HODLogin,staffForgetPassword,HODForgetPassword}

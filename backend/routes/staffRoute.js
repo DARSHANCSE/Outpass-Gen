@@ -1,6 +1,4 @@
 import express from "express"
-import { HODLogin,staffLogin,staffRegister,HODRegister} from "../controllers/staffController.js";
-import { authMiddleWare } from "../middleware/auth.js";
 import { gethodrequest } from "../controllers/outpassController.js";
 import { HODForgetPassword, HODLogin,HODRegister,staffForgetPassword,staffLogin,staffRegister} from "../controllers/staffController.js";
 import { authMiddleWare } from "../middleware/auth.js";
